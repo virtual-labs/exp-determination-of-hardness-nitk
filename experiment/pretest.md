@@ -18,7 +18,7 @@ Q 3. Select the incorrect statement from the following options. <br>
 a. Water which does not form lather with soap and forms white scum is called hard water</b><br>
 b. Hard water contains dissolved calcium and magnesium salts in it<br>
 c. In hard water, cleansing quality of soap is depressed<br>
-<b>d. Due to the presence of dissolved hardness-producing salts, the boiling point of water is depressed</b><br>
+<b>d. Due to the presence of dissolved hardness-producing salts, the boiling point of water is poor</b><br>
 
 Q 4. Select the incorrect statement from the following options. <br>
 a. Permanent hardness is due to dissolved chlorides and sulphates of calcium and magnesium<br>
