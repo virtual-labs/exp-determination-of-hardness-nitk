@@ -153,7 +153,11 @@ function magic()
 	if(simsubscreennum==4) //add ammonia buffer
 	{
 		tn=4;
-		stepAddBuffer();
+		document.getElementById("b3-1").onclick=function()
+		{
+			document.getElementById("p3-1").style.visibility="hidden";
+			stepAddBuffer();
+		}
 		//document.getElementById("nextButton").style.visibility="visible";
 	}
 	

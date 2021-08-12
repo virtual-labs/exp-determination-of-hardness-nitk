@@ -1,3 +1,14 @@
+
+### Lagu PaTa :
+
+#### Simulation demo :
+
+  <li><a href="https://www.youtube.com/watch?v=02DO6QA51BY&list=PL4_MWqusG2U4CnwqFVf35NVypEJkrvQVF&index=3">https://www.youtube.com/watch?v=02DO6QA51BY&list=PL4_MWqusG2U4CnwqFVf35NVypEJkrvQVF&index=3</a></li>
+
+#### Experimental demo :
+
+<li><a href="https://www.youtube.com/watch?v=RkqhocDFpKI">https://www.youtube.com/watch?v=RkqhocDFpKI</a></li>
+<br>
 <table style="text-align:justify;">
   <tr style="background-color:transparent;">
     <th style="width:65%;">References</th>
