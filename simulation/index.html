@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SOLVE</title>
+<link rel="stylesheet" href="css/hw.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquerymin.js"></script>
+<script type="text/javascript" src="js/hw.js"></script>
+<script>
+var simsubscreennum=0;
+var temp=0;
+</script>
+<style>
+.popup
+{
+	border-radius:5px;
+	background-color:black;
+	color:white;
+	padding:5px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+	left:40px;
+  visibility: hidden;
+  width: 500px;
+  background-color: black;
+  color: #fff;
+  border-radius: 6px;
+  padding: 10px 10px 10px 10px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 100;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+</style>
+</head>
+
+<body style="margin:0; font-family:verdana;">
+<div id="simscreen">
+<div id="title"><h3>Determination of Hardness in water</h3></div>
+
+<div class="simsubscreen" id="canvas0" >
+<h4 class="incanvas">Objective:</h4>
+<p class="incanvas" style="font-size:14px;">To determine the amount of total hardness present in a given water sample by EDTA titration method.</p><br/>
+<h4 class="incanvas">Apparatus used:</h4>
+<p class="incanvas" style="font-size:14px;">Pipette, Conical flask, Burette, Beaker, Dropper etc.</p></br>
+
+&nbsp;<span class="tooltip" style="border-bottom:1px dotted; position:absolute; top:140px; text-align:justify;"><strong>Solutions used</strong>
+<span  class="tooltiptext" style=" font-size:14px;">Ethyl Diamine Tetra-Acetic Acid (EDTA) solution, Water sample, Calcium carbonate solution, Ammonia buffer solution, Eriochrome Black T (EBT) as indicator</span></span>
+
+<span class="tooltip" style="border-bottom:1px dotted ; color:red; position:absolute; left:170px; top:140px; text-align:justify;"><strong>Description</strong>
+<span  class="tooltiptext" style=" font-size:14px;"><strong style="color:red;">Hardness of water</strong> is a measure of ability of water to cause precipitation of insoluble calcium and magnesium salts of higher fatty acids from soap solutions. </br></br>The prescence of bicarbonates of calcium and magnesium is known as<strong> <span style="color:red;">temporary hardness</span></strong>.</br></br>The prescence of sulphates, chlorides and nitrates of calcium and magnesium is known as<strong> <span style="color:red;">permanent hardness</span></strong>.</span></span>
+
+<img style="position:absolute; left:170px; top:335px;" title="Table" src="images/table.png" />
+<img style="position:absolute; left:10px; top:172.5px;" title="" src="images/human.png" />
+<img  style="position:absolute; left:220px; top:334.5px; width:125px; " title="Automatic pipette" src="images/1-6.png" />
+<img style="position:absolute; left:220px; top:359px; width:150px; " title="Graduated pipette" src="images/1-5.png" />
+<img style="position:absolute; left:400px; top:300px; width:55px" title="Beaker" src="images/1-2.png" />
+<img style="position:absolute; left:475px; top:276.5px; width:45px;" title="Conical flask" src="images/1-4.png" />
+<img style="position:absolute; left:530px; top:104px; width:110px;" title="Burette" src="images/1-3.png" />
+</div>
+
+<div id="canvas1" style="visibility:hidden;">
+<h1 id="1-1" style="position:absolute; left:90px; top:250px; color:grey; display:none;" >Standardisation of EDTA Solution</h1>
+</div>
+
+<div class="simsubscreen" id="canvas2" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;1&nbsp;</span>
+<p class="steptext">&nbsp;Fill the burette with standard EDTA solution upto zero mark.</p>
+<img id="22-2samp4" style="position:absolute; left:240px; top:310px;" src="images/sampleFromFunnelUp.png" />
+<img id="22-2samp3" style="position:absolute; left:240px; top:167px;" src="images/white.png" />
+<img id="22-2samp2" style="position:absolute; left:344px; top:162.5px; visibility:hidden;" src="images/sampleFromFunnelDown.png" />
+<img id="22-2samp" style="position:absolute; left:336px; top:112px; visibility:hidden;" src="images/sampleFromFunnel.png" />
+<img id="22-2" style="position:absolute; left:500px; top:250px; cursor:pointer; display:none;" title="Funnel" src="images/funnel.png" />
+<img id="22-1" style="position:absolute; left:240px; top:130px; " src="images/burette1.png" />
+<img  style="position:absolute; left:310px; top:430px;" src="images/beaker.png" />
+<div style="position:absolute; left:317px; top:455px; background-color:white; padding:1.25px; border:1px solid black; font-size:14px;">Surplus</div>
+<img id="22-3Cap" style="position:absolute; left:515.5px; top:241px; cursor:pointer; visibility:hidden;" src="images/EDTACap.png" />
+<img id="22-3" style="position:absolute; left:500px; top:250px; cursor:pointer; visibility:hidden;"  src="images/EDTA.png" />
+<img id="22-32" style="position:absolute; left:500px; top:250px; cursor:pointer; visibility:hidden;"  src="images/EDTA_2.png" />
+</div>
+
+<div class="simsubscreen" id="canvas3" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;2&nbsp;</span>
+<p class="steptext">&nbsp;Add 10ml 0.01M Calcium Carbonate (CaCO<sub>3</sub>) solution to a conical flask through graduated pipette.</p>
+
+<div id="3-41sw" style="position:absolute; left:472px; top:359px; width:15px; height:160px; visibility:hidden;  background-color:#F4F4F4; border:1px solid darkgrey;" ></div>
+
+<div id="3-41blank" style="position:absolute; left:472px; top:359px; width:15px; height:160px;  background-color:#FFFFFF; border:1px solid white;" ></div>
+
+<div id="3-43" style="position:absolute; left:92.5px; top:180px; width:5px; height:140px;  background-color:#F4F4F4; visibility:hidden;" ></div>
+<div style="position:absolute; left:92.5px; top:400px; width:5px; height:145px;  background-color:#FFFFFF; border:1px solid white;"" ></div>
+
+<!-- <img id="3-41sw" style="position:absolute; left:461px; top:308px; visibility:hidden;" src="images/samplewater.png" /> -->
+<img id="3-42" style="position:absolute; left:462px; top:150px; cursor:pointer; visibility:hidden;" src="images/gp3.png" />
+<img id="3-41" style="position:absolute; left:274px; top:150px; cursor:pointer; visibility:hidden;" src="images/gp2.png" />
+<img id="3-4" style="position:absolute; left:274px; top:150px; cursor:pointer; " src="images/graduatedPipette.png" />
+
+<!-- left:60px; top:380px;  for css-->
+<div id="3-1samp1" style="position:absolute; left:60px; top:416px; background-color:#F8F8F8; width:72px; height: 35px; border:1px solid darkgrey;"></div>
+<div style="position:absolute; left:60px; top:416px; background-color:#FFFFFF; width:75px; height: 40px; border:1px solid FFFFFF;"></div>
+<!-- <div id="3-1samp2" style="position:absolute; left:52px; top:390px; background-color:#CFB53B; width:76px; height: 123px; "></div> -->
+<!-- <img id="3-1samp3" style="position:absolute; left:51.5px; top:295.5px; display:none;" src="images/precipitate1.png"/> -->
+
+<img id="3-1" style="position:absolute; left:50px; top:275px;  " src="images/conicalFlask2.png" />
+
+<!-- <img id="3-3" style="position:absolute; left:440.25px; top:308px; cursor:pointer;" src="images/h2so4Sol_1.png" /> -->
+<div id="3-3" style="position:absolute; left:450px; top:359px; width:60px; height:60px; background-color:#F5F5F5; border:1px solid darkgrey;" ></div>
+<!-- <img id="3-2cap" style="position:absolute; left:461px; top:241px; cursor:pointer;" src="images/h2so4cap.png" /> -->
+<img id="3-2" style="position:absolute; left:440px; top:340px;" src="images/beaker1.png" />
+
+<img id="3-5bulb" style="position:absolute; left:250px; top:150px; display:none; " title="Pipette Bulb" src="images/bulb.png" />
+<img id="3-5up" style="position:absolute; left:301.5px; top:257px; cursor:pointer; display:none;" src="images/uparrow.png" />
+<img id="3-5down" style="position:absolute; left:314px; top:270px; cursor:pointer; display:none; transform: rotate(180deg);" src="images/uparrow.png" />
+
+<div id="3name" style="position:absolute; left:454px; top:372px; background-color:#FFFFFF; width:45px; height: 17px; border:1px solid black; color:black; padding:3px; font-size:10.5px;">&nbsp;CaCO<sub>3</sub></div>
+
+<p id="3p3-1" style="position:absolute; left:25px; top:105px; visibility:hidden; color:red; font-size:14px;" >Squeeze the pipette bulb and dip </br></br>pipette into the CaCO<sub>3</sub> solution</p>
+
+<p id="3p3-2" style="position:absolute; left:10px; top:100px; visibility:hidden; color:red; font-size:14px;" >Press the up arrow on the bulb </br></br>to take the liquid up into the pipette </p>
+
+</div>
+
+<div class="simsubscreen" id="canvas4" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;3&nbsp;</span>
+<p class="steptext">&nbsp;Add 1ml Ammonia Buffer solution by automatic pipette to the conical flask.</p>
+
+<img id="44Up2"  style="position:absolute; left: 450px; top: 150px; visibility:hidden; cursor:pointer;" src="images/apup3.png">
+<img id="44Up"  style="position:absolute; left: 256px; top: 200px; display:none; cursor:pointer;" src="images/apup.png">
+<img id="44button"  style="position:absolute; left: 266.75px; top: 212.25px; visibility:hidden; cursor:pointer;" src="images/button.png">
+<img id="44Down"  style="position:absolute; left: 256px; top: 200px; visibility:hidden; cursor:pointer;" src="images/apdown.png">
+
+<div id="41samp2" style="position:absolute; left:91px; top:281.5px; background-color:#F4F4F4; width:10px; height: 32px; border:1px solid darkgrey; visibility:hidden;"></div>
+
+<img id="44Down2"  style="position:absolute; left: 70px; top: 130px; visibility:hidden; cursor:pointer;" src="images/apdown2.png">
+
+<div id="4drop4-3" style="position:absolute; left:92px; top:317px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+
+<div id="41samp1" style="position:absolute; left:60px; top:355px; background-color:#F8F8F8; width:72px; height: 52px; border:1px solid darkgrey;"></div>
+<div style="position:absolute; left:60px; top:416px; background-color:#FFFFFF; width:75px; height: 40px; border:1px solid FFFFFF;"></div>
+
+<img id="41" style="position:absolute; left:50px; top:250px;  " src="images/conicalFlask2.png" />
+
+<img id="42" style="position:absolute; left:441px; top:257px; height:120px;" src="images/aias.png" />
+<img id="42Cap" style="position:absolute; left:460px; top:253px; cursor:pointer;  width:25px;" src="images/aiascap.png" />
+<img id="42Cap2" style="position:absolute; left:440px; top:208px; cursor:pointer;  visibility:hidden;" src="images/removeAiasCap.png" />
+
+<span id="p3-1" style="position:absolute; left:75px; top:100px; text-align:justify; padding:15px; border:1px solid black; background-color:black; border-radius:5px;">
+<p style="color:white; font-size:15px;" >Ammonia buffer solution is added for <br>removing interference of the particle. </p>
+<input id="b3-1" type="button" style="float:right;" value="OK" />
+</span>
+
+</div>
+
+<div class="simsubscreen" id="canvas5" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;4&nbsp;</span>
+<p class="steptext">&nbsp;Add 3-4 drops of Eriochrome Black T indicator to the conical flask.</p>
+
+
+<div id="4-2c" style="position:absolute; left:89px; top:220px; width:10px; height:45px; background-color:steelblue; visibility:hidden;" ></div>
+
+<div id="4-2b" style="position:absolute; left:468.5px; top:359px; width:10px; height:40px; background-color:steelblue; " ></div>
+
+<!-- <img id="4-3b2" style="position:absolute; left:455px; top:302.5px; " src="images/starch1.png" /> -->
+
+
+<img id="4-4b" style="position:absolute; left:461px; top:240px; visibility:hidden;" src="images/dropper2.png" />
+
+<img id="4-4a" style="position:absolute; left:461px; top:140px; display:none;" src="images/dropper.png" />
+
+ <div id="4-2a" style="position:absolute; left:455px; top:349px; width:49px; height:62px; background-color:#4682b4; " ></div> 	<!--4682b4 is steelblue-->
+
+<img id="4-3" style="position:absolute; left:455px; top:302.5px; " src="images/starch.png" />
+<img id="4-3a" style="position:absolute; left:462.75px; top:283px;  cursor:pointer;" src="images/starchcap.png" />
+
+<div id="4drop4-2" style="position:absolute; left:95px; top:280px; width:8px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:steelblue; visibility:hidden;"></div>
+<div id="4drop4-1" style="position:absolute; left:95px; top:280px; width:8px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:steelblue; visibility:hidden;"></div>
+
+<div id="4-0" style="position:absolute; left:60px; top:380px; background-color:#F8F8F8; width:72px; height: 35px; border:1px solid darkgrey;"></div>
+<img id="4-1" style="position:absolute; left:50px; top:275px;  " src="images/conicalFlask2.png" />
+<!-- <img id="4-3" style="position:absolute; left:440px; top:340px;" src="images/beaker1.png" /> -->
+<!-- <div id="4name" style="position:absolute; left:455.50px; top:357px; background-color:#FFFFFF; width:43.5px; height: 17px; border:1px solid black; color:black; padding:1px; font-size:12px;">&nbsp;&nbsp;&nbsp;EBT</div> -->
+
+</div>
+
+
+
+<div class="simsubscreen" id="canvas6" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;4&nbsp;</span>
+<p class="steptext">&nbsp;Titrate the EDTA solution till the colour changes to blue.</p>
+
+<img id="59-1a" style="position:absolute; left:141.5px; top:92.5px; " src="images/AgNO3_3.png" />
+
+<div id="59blank" style="position:absolute; left:142.5px; top:313px; width:12.5px; height:55px; background-color: #ffffff;  "></div>
+
+
+<div id="5drop9-4" style="position:absolute; left:142.5px; top:325px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+<div id="5drop9-5" style="position:absolute; left:142.5px; top:325px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+
+<img id="59-1stopper" style="position:absolute; left:150px; top:308.75px; " src="images/stopper.png" />
+<img id="9-1" style="position:absolute; left:40px; top:35px; " src="images/burette2.png" />
+
+<div id="5drop9-2" style="position:absolute; left:142.5px; top:325px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+<div id="5drop9-1" style="position:absolute; left:142.5px; top:325px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+
+<div id="5drop9-3" style="position:absolute; left:150px; top:375px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+
+<img id="59-1knob" style="position:absolute; left:159.5px; top:317px; cursor:pointer;" src="images/knob.png" />
+<img id="59-1hand" style="position:absolute; left:159.5px; top:303.75px; cursor:pointer; visibility:hidden;" src="images/hand.png" />
+<img id="59-1hand2" style="position:absolute; left:161px; top:306.75px; cursor:pointer; visibility:hidden;" src="images/hand2.png" />
+
+<div style="position:absolute; left:127px; top:440px; width:46.5px; height:5px; background-color:white; "></div>
+
+<div id="59-3" style="position:absolute; left:120px; top:445.75px; width:60px; height:39px; background-color:#da2c24; overflow:hidden; "></div>
+<div id="59-3b" style="position:absolute; left:120px; top:445.75px; width:60px; height:39px; background-color: #0000A0; overflow:hidden; visibility:hidden; "></div>
+<img id="59-2" style="position:absolute; left:120px; top:372.5px; width:60px;" src="images/conicalFlask3.png" />
+
+<p id="5p9-0a" style="position:absolute; left:205px; top:230px; font-size:15px; color:red;  visibility:hidden;">Open the knob to start the liquid running into the conical flask</p>
+<p id="5p9-0b" style="position:absolute; left:205px; top:230px; font-size:15px; color:red;  visibility:hidden;">Close the knob when the colour of solution in conical flask changes to pale yellow</p>
+<p id="5p9-1" style="position:absolute; left:350px; top:75px; font-size:15px;  visibility:hidden;">Initial burette reading = 0 ml</p>
+<p id="5p9-3" style="position:absolute; left:350px; top:125px; font-size:15px;  visibility:hidden;">Final burette reading = _______ ml</p>
+
+</div>
+
+<div id="canvas7" class="simsubscreen" style="visibility:hidden;">
+<strong class="incanvas" id="ob"><h3>Observations: </h3></strong>
+<table id="table" border=1 style="text-align:center; font-size:14px; width:700px;">
+<tr>
+<!-- <td style="padding:10px;">Trial</td> -->
+<td style="padding:10px;" rowspan="2">Volume of Calcium Carbonate </br>(CaCo<sub>3</sub>) solution (ml)</td>
+<td style="padding:10px; " colspan="2">Burette Reading (ml)</td>
+<td style="padding:10px; " rowspan="2">Volume of EDTA (ml)</br> ( Final Value - Initial Value )</br></td>
+</tr>
+<tr>
+<td id="" style="padding:10px;">Initial Value</td>
+<td id="" style="padding:10px;">Final Value</td>
+</tr>
+<tr>
+<td id="1" style="padding:10px;"></td>
+<td id="2" style="padding:10px;"></td>
+<td id="3" style="padding:10px;"></td>
+<td id="4" style="padding:10px;"></td>
+</tr>
+</table>
+
+</br></br></br></br>
+<label style="font-size:14px;" >CaCO<sub>3</sub> equivalent to 1ml of EDTA =</label> <input id="output1" type="text" style=" border:none; border-bottom: 1px solid; width:55px;" required >&nbsp;&nbsp;<input id="norm" type="button" name="Formula" value="Formula" />&nbsp;&nbsp;
+<input id="check1" type="button" name="Formula" value="Check" />&nbsp;&nbsp;&nbsp;<input id="result1" type="button" name="Formula" value="Result"  style="visibility:hidden;" /></br>
+</br></br>
+
+<img id="eqn1"  style="position:absolute; left:0px; top:330px; border:2px solid black; padding:5px; visibility:hidden;  " src="images/eqn1.png" />
+
+<p id="r1" style="position:absolute; left:320px; top:250px; color:#32CD32;  visibility:hidden; font-size:22px;" >&#10004;</p><p id="w1" style="position:absolute; left:555px; top:255px; color:red;  visibility:hidden; font-size:22px;" >&#10008;</p>
+
+<p id="display1" style="position:absolute; left:0px; top:350px; font-size:14px; visibility:hidden;" >CaCO<sub>3</sub> equivalent to 1ml of EDTA =</p>
+</div>
+
+
+<!-- BLANK TEST -->
+<div id="canvas8" style="visibility:hidden;">
+<h1 id="7-1" style="position:absolute; left:250px; top:250px; color:grey; display:none;" >Sample Titration</h1>
+</div>
+
+<div class="simsubscreen" id="canvas9" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;1&nbsp;</span>
+<p class="steptext">&nbsp;Fill the burette with standard EDTA solution upto zero mark.</p>
+<img id="88-2samp4" style="position:absolute; left:240px; top:310px;" src="images/sampleFromFunnelUp.png" />
+<img id="88-2samp3" style="position:absolute; left:240px; top:167px;" src="images/white.png" />
+<img id="88-2samp2" style="position:absolute; left:344px; top:162.5px; visibility:hidden;" src="images/sampleFromFunnelDown.png" />
+<img id="88-2samp" style="position:absolute; left:336px; top:112px; visibility:hidden;" src="images/sampleFromFunnel.png" />
+<img id="88-2" style="position:absolute; left:500px; top:250px; cursor:pointer; display:none;" title="Funnel" src="images/funnel.png" />
+<img id="88-1" style="position:absolute; left:240px; top:130px; " src="images/burette1.png" />
+<img  style="position:absolute; left:310px; top:430px;" src="images/beaker.png" />
+<div style="position:absolute; left:317px; top:455px; background-color:white; padding:1.25px; border:1px solid black; font-size:14px;">Surplus</div>
+<img id="88-3Cap" style="position:absolute; left:515.5px; top:241px; cursor:pointer; visibility:hidden;" src="images/EDTACap.png" />
+<img id="88-3" style="position:absolute; left:500px; top:250px; cursor:pointer; visibility:hidden;" src="images/EDTA.png" />
+<img id="88-32" style="position:absolute; left:500px; top:250px; cursor:pointer; visibility:hidden;" src="images/EDTA_2.png" />
+</div>
+
+<div class="simsubscreen" id="canvas10" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;2&nbsp;</span>
+<p class="steptext">&nbsp;Add 100ml water sample to a conical flask through graduated pipette.</p>
+
+<div id="9-41sw" style="position:absolute; left:472px; top:359px; width:15px; height:160px; visibility:hidden;  background-color:#F4F4F4; border:1px solid darkgrey;" ></div>
+
+<div id="9-41blank" style="position:absolute; left:472px; top:359px; width:15px; height:160px;  background-color:#FFFFFF; border:1px solid white;" ></div>
+
+<div id="9-43" style="position:absolute; left:92.5px; top:180px; width:5px; height:140px;  background-color:#F4F4F4; visibility:hidden;" ></div>
+<div style="position:absolute; left:92.5px; top:400px; width:5px; height:145px;  background-color:#FFFFFF; border:1px solid white;"" ></div>
+
+<!-- <img id="3-41sw" style="position:absolute; left:461px; top:308px; visibility:hidden;" src="images/samplewater.png" /> -->
+<img id="9-42" style="position:absolute; left:462px; top:150px; cursor:pointer; visibility:hidden;" src="images/gp3.png" />
+<img id="9-41" style="position:absolute; left:274px; top:150px; cursor:pointer; visibility:hidden;" src="images/gp2.png" />
+<img id="9-4" style="position:absolute; left:274px; top:150px; cursor:pointer; " src="images/graduatedPipette.png" />
+
+<!-- left:60px; top:380px;  for css-->
+<div id="9-1samp1" style="position:absolute; left:60px; top:416px; background-color:#F8F8F8; width:72px; height: 35px; border:1px solid darkgrey;"></div>
+<div id="9-9" style="position:absolute; left:60px; top:416px; background-color:#FFFFFF; width:75px; height: 40px; border:1px solid FFFFFF;"></div>
+<!-- <div id="3-1samp2" style="position:absolute; left:52px; top:390px; background-color:#CFB53B; width:76px; height: 123px; "></div> -->
+<!-- <img id="3-1samp3" style="position:absolute; left:51.5px; top:295.5px; display:none;" src="images/precipitate1.png"/> -->
+
+<img id="9-1" style="position:absolute; left:50px; top:275px;  " src="images/conicalFlask2.png" />
+
+<!-- <img id="3-3" style="position:absolute; left:440.25px; top:308px; cursor:pointer;" src="images/h2so4Sol_1.png" /> -->
+<div id="9-3" style="position:absolute; left:450px; top:359px; width:60px; height:60px; background-color:#F5F5F5; border:1px solid darkgrey;" ></div>
+<!-- <img id="3-2cap" style="position:absolute; left:461px; top:241px; cursor:pointer;" src="images/h2so4cap.png" /> -->
+<img id="9-2" style="position:absolute; left:440px; top:340px;" src="images/beaker2.png" />
+
+<div id="9name" style="position:absolute; left:454px; top:372px; background-color:#FFFFFF; width:50px; height: 17px; border:1px solid black; color:black; padding:1.5px; font-size:10px;">&nbsp;Sample</div>
+
+<img id="9-5bulb" style="position:absolute; left:250px; top:150px; display:none; " title="Pipette Bulb" src="images/bulb.png" />
+<img id="9-5up" style="position:absolute; left:301.5px; top:257px; cursor:pointer; display:none;" src="images/uparrow.png" />
+<img id="9-5down" style="position:absolute; left:314px; top:270px; cursor:pointer; display:none; transform: rotate(180deg);" src="images/uparrow.png" />
+
+<p id="9p3-1" style="position:absolute; left:25px; top:105px; visibility:hidden; color:red; font-size:14px;" >Squeeze the pipette bulb and dip </br></br>pipette into the water sample</p>
+
+<p id="9p3-2" style="position:absolute; left:10px; top:100px; visibility:hidden; color:red; font-size:14px;" >Press the up arrow on the bulb </br></br>to take the liquid up into the pipette </p>
+
+</div>
+
+<div class="simsubscreen" id="canvas11" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;3&nbsp;</span>
+<p class="steptext">&nbsp;Add 1ml Ammonia Buffer solution by automatic pipette to the conical flask.</p>
+
+<img id="114Up2"  style="position:absolute; left: 450px; top: 150px; visibility:hidden; cursor:pointer;" src="images/apup3.png">
+<img id="114Up"  style="position:absolute; left: 256px; top: 200px; display:none; cursor:pointer;" src="images/apup.png">
+<img id="114button"  style="position:absolute; left: 266.75px; top: 212.25px; visibility:hidden; cursor:pointer;" src="images/button.png">
+<img id="114Down"  style="position:absolute; left: 256px; top: 200px; visibility:hidden; cursor:pointer;" src="images/apdown.png">
+
+<div id="111samp2" style="position:absolute; left:91px; top:281.5px; background-color:#F4F4F4; width:10px; height: 32px; border:1px solid darkgrey; visibility:hidden;"></div>
+
+<img id="114Down2"  style="position:absolute; left: 70px; top: 130px; visibility:hidden; cursor:pointer;" src="images/apdown2.png">
+
+<div id="11drop4-3" style="position:absolute; left:92px; top:317px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+
+<div id="111samp1" style="position:absolute; left:60px; top:355px; background-color:#F8F8F8; width:72px; height: 52px; border:1px solid darkgrey;"></div>
+<div style="position:absolute; left:60px; top:416px; background-color:#FFFFFF; width:75px; height: 40px; border:1px solid FFFFFF;"></div>
+
+<img id="111" style="position:absolute; left:50px; top:250px;  " src="images/conicalFlask2.png" />
+
+<img id="112" style="position:absolute; left:441px; top:257px; height:120px;" src="images/aias.png" />
+<img id="112Cap" style="position:absolute; left:460px; top:253px; cursor:pointer;  width:25px;" src="images/aiascap.png" />
+<img id="112Cap2" style="position:absolute; left:440px; top:208px; cursor:pointer;  visibility:hidden;" src="images/removeAiasCap.png" />
+
+
+</div>
+
+<div class="simsubscreen" id="canvas12" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;4&nbsp;</span>
+<p class="steptext">&nbsp;Add 3-4 drops of Eriochrome Black T indicator to the conical flask.</p>
+
+<div id="10-2c" style="position:absolute; left:89px; top:220px; width:10px; height:45px; background-color:steelblue; visibility:hidden;" ></div>
+
+<div id="10-2b" style="position:absolute; left:468.5px; top:359px; width:10px; height:40px; background-color:steelblue; " ></div>
+
+<img id="10-4b" style="position:absolute; left:461px; top:240px; visibility:hidden;" src="images/dropper2.png" />
+
+<img id="10-4a" style="position:absolute; left:461px; top:140px; display:none;" src="images/dropper.png" />
+
+<div id="10-2a" style="position:absolute; left:455px; top:349px; width:49px; height:62px; background-color:#4682b4; " ></div> 	<!--4682b4 is steelblue-->
+
+<img id="10-3" style="position:absolute; left:455px; top:302.5px; " src="images/starch.png" />
+<img id="10-3a" style="position:absolute; left:462.75px; top:283px;  cursor:pointer;" src="images/starchcap.png" />
+
+<div id="10drop4-2" style="position:absolute; left:95px; top:280px; width:8px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:steelblue; visibility:hidden;"></div>
+<div id="10drop4-1" style="position:absolute; left:95px; top:280px; width:8px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:steelblue; visibility:hidden;"></div>
+
+<div id="10-0" style="position:absolute; left:60px; top:380px; background-color:#F8F8F8; width:72px; height: 35px; border:1px solid darkgrey;"></div>
+<img id="10-1" style="position:absolute; left:50px; top:275px;  " src="images/conicalFlask2.png" />
+
+</div>
+
+
+<div class="simsubscreen" id="canvas13" style="visibility:hidden;">
+<strong class="incanvas">STEP</strong>
+<span class="circlebg">&nbsp;5&nbsp;</span>
+<p class="steptext">&nbsp;Titrate the EDTA solution till the colour changes to blue.</p>
+
+<img id="119-1a" style="position:absolute; left:141.5px; top:92.5px; " src="images/AgNO3_3.png" />
+
+<div id="119blank" style="position:absolute; left:142.5px; top:313px; width:12.5px; height:55px; background-color: #ffffff;  "></div>
+
+
+<div id="11drop9-4" style="position:absolute; left:142.5px; top:325px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+<div id="11drop9-5" style="position:absolute; left:142.5px; top:325px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+
+<img id="119-1stopper" style="position:absolute; left:150px; top:308.75px; " src="images/stopper.png" />
+<img id="119-1" style="position:absolute; left:40px; top:35px; " src="images/burette2.png" />
+
+<div id="11drop9-2" style="position:absolute; left:142.5px; top:325px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+<div id="11drop9-1" style="position:absolute; left:142.5px; top:325px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+
+<div id="11drop9-3" style="position:absolute; left:150px; top:375px; width:7.5px; height:8px; border-radius:50%; border-top-right-radius:0; transform:rotate(-45deg);  background-color:#DCDCDC; visibility:hidden;"></div>
+
+<img id="119-1knob" style="position:absolute; left:159.5px; top:317px; cursor:pointer;" src="images/knob.png" />
+<img id="119-1hand" style="position:absolute; left:159.5px; top:303.75px; cursor:pointer; visibility:hidden;" src="images/hand.png" />
+<img id="119-1hand2" style="position:absolute; left:161px; top:306.75px; cursor:pointer; visibility:hidden;" src="images/hand2.png" />
+
+<div style="position:absolute; left:127px; top:440px; width:46.5px; height:5px; background-color:white; "></div>
+
+<div id="119-3" style="position:absolute; left:120px; top:445.75px; width:60px; height:39px; background-color:#da2c24; overflow:hidden; "></div>
+<div id="119-3b" style="position:absolute; left:120px; top:445.75px; width:60px; height:39px; background-color: #0000A0; overflow:hidden; visibility:hidden; "></div>
+<img id="119-2" style="position:absolute; left:120px; top:372.5px; width:60px;" src="images/conicalFlask3.png" />
+
+<p id="11p9-0a" style="position:absolute; left:205px; top:230px; font-size:15px; color:red;  visibility:hidden;">Open the knob to start the liquid running into the conical flask</p>
+<p id="11p9-0b" style="position:absolute; left:205px; top:230px; font-size:15px; color:red;  visibility:hidden;">Close the knob when the colour of solution in conical flask changes to pale yellow</p>
+<p id="11p9-1" style="position:absolute; left:350px; top:75px; font-size:15px;  visibility:hidden;">Initial burette reading = 0 ml</p>
+<p id="11p9-3" style="position:absolute; left:350px; top:125px; font-size:15px;  visibility:hidden;">Initial burette reading = _______ml</p>
+
+</div>
+
+
+
+<div id="canvas14" class="simsubscreen" style="visibility:hidden;">
+<strong class="incanvas" id="ob"><h3>Observations: </h3></strong>
+<table id="table" border=1 style="text-align:center; font-size:14px; width:700px;">
+<tr>
+<!-- <td style="padding:10px;">Trial</td> -->
+<td style="padding:10px;" rowspan="2">Volume of sample </br>taken (ml) </br></br> C</td>
+<td style="padding:10px; " colspan="2">Burette Reading (ml)</td>
+<td style="padding:10px; " rowspan="2">Volume of EDTA (ml)</br>(Final Value-Initial Value)</br></br> A</td>
+<td style="padding:10px; " rowspan="2">CaCO<sub>3</sub> equivalent </br>to 1ml of EDTA</br></br> B</td>
+</tr>
+<tr>
+<td id="" style="padding:10px;">Initial Value</td>
+<td id="" style="padding:10px;">Final Value</td>
+</tr>
+<tr>
+<td id="11" style="padding:10px;"></td>
+<td id="22" style="padding:10px;"></td>
+<td id="33" style="padding:10px;"></td>
+<td id="44" style="padding:10px;"></td>
+<td id="55" style="padding:10px;"></td>
+</tr>
+</table>
+
+</br></br></br></br>
+<label style="font-size:14px;" >Total hardness =</label> <input id="output2" type="text" style=" border:none; border-bottom: 1px solid; width:55px;" required >&nbsp;&nbsp;<input id="form2" type="button" name="Formula" value="Formula"  />&nbsp;&nbsp;
+<input id="check2" type="button" name="check" value="Check" />&nbsp;&nbsp;&nbsp;<input id="result2" type="button" name="Result" value="Result"  style="visibility:hidden;" /></br>
+</br></br>
+
+<img id="eqn2"  style="position:absolute; left:410px; top:285px; border:2px solid black; padding:5px; visibility:hidden; " src="images/eqn2.png" />
+
+<p id="r2" style="position:absolute; left:235px; top:260px; color:#32CD32;  visibility:hidden; font-size:22px;" >&#10004;</p><p id="w2" style="position:absolute; left:430px; top:265px; color:red;  visibility:hidden; font-size:22px;" >&#10008;</p>
+
+<p id="display2" style="position:absolute; left:0px; top:350px; font-size:14px; visibility:hidden;" >Total hardness =</p>
+</div>
+
+<div id="canvas15" class="simsubscreen" style="visibility:hidden;">
+<strong class="incanvas" id="ob"><h3>Inference: </h3></strong>
+<div id="inference" style="position:absolute; left:100px; top:100px; font-size:14px; background-color:grey; color:white; padding:7.5px; border-radius:5px;">
+<p>The limit of hardness as per BIS standards is 300mg/l ?</p>
+<input type="radio" name="inf" value="1">&nbsp;True</br>
+<input type="radio" name="inf" value="2">&nbsp;False</br></br>
+<input type="button" value="Submit" onclick="checkInference();"/>
+<p id="ans" style="visibility:hidden;"></p>
+</div>
+<p id="infAns" style="display:none; font-size:16px; font-weight:bold; text-align:justify; width:700px;"></p>
+</div>
+
+<div id="questDiv" style="position:absolute; font-size:14px; background-color:grey; color:white; padding:7.5px; border-radius:5px; visibility:hidden; width:300px; text-align:justify;">
+<p id="q"></p><select id="answer" >
+</select>
+<p id="a"></p>
+</div>
+
+<div id="">
+<p id="titration" style="text-transform: uppercase;visibility :hidden;font-weight: bold;font-family:verdana; font-size:14px;"><strong>Titration = </strong></p>
+</div>
+
+<!-- nextButton -->
+<div id="nav">
+<img id="nextButton" onclick="navNext()" src="images/Next.png" />
+</div>
+
+<!--Blinking Arrow	-->
+<img class ="" id="arrow1" style="visibility:hidden;" src="images/arrow1.png"/>
+
+<div id="copyright"> &copy; 2018 - <script>document.write(new Date().getFullYear())</script> SOLVE - The Virtual Lab @ NITK Surathkal, Department of Water Resources & Ocean Engineering</div>
+
+</div>
+<script src="../assets/js/iframeResize.js"></script></body>
+</html>
+<!--comments-->
